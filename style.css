@@ -1,3 +1,55 @@
 body {
-  background-color: green;
+  background-color: gainsboro;
+  font-family: system-ui, sans-serif;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#mainBoard {
+  width: 600px;
+  height: 600px;
+  border: 1px solid black;
+}
+.insideBoard {
+  width: 600px;
+  height: 200px;
+  display: flex;
+}
+.Lobby {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rowCell {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.cell {
+  width: 65.4px;
+  height: 31.73px;
+  border: 1px solid black;
+}
+.midRowCell {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.midcell {
+  width: 31.474px;
+  height: 65.4px;
+  border: 1px solid black;
 }

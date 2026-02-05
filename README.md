@@ -14,4 +14,4 @@
 ### *Future Update*
 - [ ] complete design HTML
 - [ ] complete style CSS
-- [] complete game functions (JS)
+- [ ] complete game functions (JS)
