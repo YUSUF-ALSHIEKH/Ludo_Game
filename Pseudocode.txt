@@ -1,0 +1,12 @@
+1- first random player will start
+2- throw dice and need number 6 to out one piece from lobby and you will throw every time the number 6 out (mean you get 6 you move 6 steps and throw dice one more if out 6 do same thing)
+3- you will throw dice in you round and move you piece that you out it from lobby
+4- if you have one piece and dice out number 6 you can move the piece or out other piece from lobby
+5- then you will go around the board and back to center you color.
+6-if you eat player piece you move 10 steps and player piece will back to lobby.
+7- if you step on specific square you will move 2 steps more
+8- if you reach the center and there are 3 steps to enter your piece to save side and you get 4 you cant move until you get 3 or 2 or 1 or get 6 (6 mean throw agin until (123)).
+
+
+
+
