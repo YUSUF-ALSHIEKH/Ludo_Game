@@ -53,6 +53,7 @@ body {
 }
 .midcell {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 31.2px;
@@ -157,7 +158,7 @@ body {
   border-top: 97px solid transparent;
 }
 
-.Homecounter {
+.homeCounter {
   width: 25px;
   height: 25px;
   margin: 12px;
@@ -166,4 +167,10 @@ body {
   border-radius: 50%;
   position: absolute;
   text-align: center;
+}
+/* if the pice go to cell */
+.pieceinsidecell {
+  width: 12px;
+  height: 12px;
+  margin: 1px;
 }
