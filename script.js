@@ -1,21 +1,26 @@
-const pieceNumber = document.querySelector("#info")
-const green_Pieces = document.querySelector("#g1")
-const up_Down_Cells = document.getElementById("1")
-const startButton = document.querySelector("#sumbit")
-
+const pieceNumber = document.querySelector("#piecenums")
+const playNumber = document.querySelector("#Players")
+const startButton = document.querySelector("print")
+const saveButton = document.querySelector("#submit")
 class Plays_Pieces {
-  constructor(numbers, color, players) {
-    this.number = numbers
-    this.color = color
+  constructor(numbers, players) {
+    this.pieceNumber = numbers
     this.players = players
   }
 }
 function init() {
-  const pieceNum = pieceNumber.Value()
-  console.log(pieceNum)
+  let num = pieceNumber.value
+  let plNumber = playNumber.value
+  let plays_Pieces = new Plays_Pieces(num, plNumber)
+  return plays_Pieces
 }
-const pieceNum = pieceNumber.Value
-console.log(pieceNum)
 
-startButton.addEventListener("click", init)
+function save() {
+  const saveInfo = init()
+  console.log(saveInfo.pieceNumber)
+}
+
+saveButton.addEventListener("click", save)
+
+// startButton.addEventListener("click", save)
 // startButton.addEventListener("click", takeinfo)
