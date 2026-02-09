@@ -97,6 +97,8 @@ body {
 /* pice board */
 .greenPiece {
   border: 2px solid #09f609;
+  text-align: center;
+  color: #09f609;
 }
 .yellowPiece {
   border: 2px solid yellow;
