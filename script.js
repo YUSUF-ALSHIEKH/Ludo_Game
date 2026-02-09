@@ -1,23 +1,20 @@
-const pieceNumber = document.querySelector("#piecenums")
 const playNumber = document.querySelector("#Players")
-const saveButton = document.querySelector("#submit")
-class Plays_Pieces {
-  constructor(numbers, players) {
-    this.pieceNumber = numbers
-    this.players = players
+const saveButton = document.querySelector("#save")
+const startButton = document.querySelector("#start")
+const indexHtml = "index.html"
+const fourPlayer = "four_player.html"
+const threePlayer = "three_player.html"
+console.log(startButton)
+
+function init() {
+  let plNumber = playNumber.value
+  if (plNumber === "2") {
+    startButton.href = indexHtml
+  } else if (plNumber === "3") {
+    startButton.href = threePlayer
+  } else {
+    startButton.href = fourPlayer
   }
 }
-function init() {
-  let num = pieceNumber.value
-  let plNumber = playNumber.value
-  let plays_Pieces = new Plays_Pieces(num, plNumber)
-  return plays_Pieces
-}
 
-function save() {
-  const saveInfo = init()
-  console.log(saveInfo.pieceNumber)
-}
-
-saveButton.addEventListener("click", save)
-// startButton.addEventListener("click", takeinfo)
+saveButton.addEventListener("click", init)
