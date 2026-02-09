@@ -102,12 +102,18 @@ body {
 }
 .yellowPiece {
   border: 2px solid yellow;
+  text-align: center;
+  color: yellow;
 }
 .redPiece {
   border: 2px solid red;
+  text-align: center;
+  color: red;
 }
 .bluePiece {
   border: 2px solid #4646fe;
+  text-align: center;
+  color: #4646fe;
 }
 /* using position : https://www.w3schools.com/cssref/pr_class_position.php */
 /* mid square  using https://css-tricks.com/snippets/css/css-triangle/*/

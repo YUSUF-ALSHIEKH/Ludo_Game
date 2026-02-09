@@ -1,6 +1,5 @@
 const pieceNumber = document.querySelector("#piecenums")
 const playNumber = document.querySelector("#Players")
-const startButton = document.querySelector("print")
 const saveButton = document.querySelector("#submit")
 class Plays_Pieces {
   constructor(numbers, players) {
@@ -21,6 +20,4 @@ function save() {
 }
 
 saveButton.addEventListener("click", save)
-
-// startButton.addEventListener("click", save)
 // startButton.addEventListener("click", takeinfo)
