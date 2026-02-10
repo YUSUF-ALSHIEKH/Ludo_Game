@@ -4,7 +4,6 @@ const startButton = document.querySelector("#start")
 const indexHtml = "index.html"
 const fourPlayer = "four_player.html"
 const threePlayer = "three_player.html"
-console.log(startButton)
 
 function init() {
   let plNumber = playNumber.value

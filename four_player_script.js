@@ -1,6 +1,5 @@
 const dice = document.querySelector("#dice")
 const throwButton = document.querySelector("#throw")
-
 let team = ["green", "yellow", "red", "blue"]
 let diceValue = 0
 let turn
@@ -268,7 +267,20 @@ let piecesPotion = {
 function throwDice() {
   diceValue = Math.floor(Math.random() * 6) + 1
   dice.textContent = `DICE: ${diceValue}`
-
-  return diceValue
 }
+function randomStart() {
+  let randomTeam = team[Math.floor(Math.random() * team.length)]
+  turn = randomTeam
+}
+function render() {
+  const pieceName = Object.keys(piecesPotion)
+  for (let i = 0; i < pieceName.length; i++) {
+    let piece = pieceName[i]
+    let pieceDiv = document.getElementById(`${piece}`)
+    let cellposition = document.getElementById(`${piecesPotion[String(piece)]}`)
+    cellposition.appendChild(pieceDiv)
+  }
+}
+
 throwButton.addEventListener("click", throwDice)
+render()
