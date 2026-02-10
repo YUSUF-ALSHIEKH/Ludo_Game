@@ -1,5 +1,8 @@
 const dice = document.querySelector("#dice")
 const throwButton = document.querySelector("#throw")
+const turnDisplay = document.querySelector("#turn")
+const allPieces = document.querySelectorAll(".piece")
+
 let team = ["green", "yellow", "red", "blue"]
 let diceValue = 0
 let turn
@@ -265,19 +268,22 @@ let piecesPotion = {
 }
 
 function throwDice() {
-  diceValue = Math.floor(Math.random() * 6) + 1
+  const randomValue = Math.floor(Math.random() * 6) + 1
+  diceValue = randomValue
   dice.textContent = `DICE: ${diceValue}`
 }
 function randomStart() {
   let randomTeam = team[Math.floor(Math.random() * team.length)]
   turn = randomTeam
+  turnDisplay.textContent = `TURN: ${turn} `
+  turnDisplay.style.color = `${turn}`
 }
 function render() {
   const pieceName = Object.keys(piecesPotion)
   for (let i = 0; i < pieceName.length; i++) {
     let piece = pieceName[i]
     let pieceDiv = document.getElementById(`${piece}`)
-    let cellposition = document.getElementById(`${piecesPotion[String(piece)]}`)
+    let cellposition = document.getElementById(`${piecesPotion[piece]}`)
     cellposition.appendChild(pieceDiv)
   }
   for (let i = 0; i < pieceName.length; i++) {
@@ -302,6 +308,62 @@ function render() {
     }
   }
 }
+function switchTurn() {
+  if (turn === "green") {
+    turn = "yellow"
+  } else if (turn === "yellow") {
+    turn = "red"
+  } else if (turn === "red") {
+    turn = "blue"
+  } else {
+    turn = "green"
+  }
+  turnDisplay.textContent = `TURN: ${turn} `
+  turnDisplay.style.color = `${turn}`
+}
+function movePieces(event) {
+  const pieceId = event.target.id
+  const pieceColor = pieceId.replace(/[0-9]/g, "")
 
+  if (pieceColor !== turn) {
+    alert(`it is ${turn} turn`)
+    return
+  }
+
+  if (diceValue === 0) {
+    alert("Throw the dice")
+    return
+  }
+
+  const path = paths[pieceColor]
+  const currentPosition = piecesPotion[pieceId]
+  const currentIndex = path.indexOf(currentPosition)
+
+  if (currentIndex === 0) {
+    if (diceValue !== 6) {
+      return
+    }
+    piecesPotion[pieceId] = path[1]
+  } else {
+    const nextIndex = currentIndex + diceValue
+
+    if (nextIndex >= path.length) {
+      alert("you need small number to jump ")
+      return
+    }
+
+    piecesPotion[pieceId] = path[nextIndex]
+  }
+
+  diceValue = 0
+  dice.textContent = "DICE : 0"
+
+  render()
+  switchTurn()
+}
+randomStart()
+
+allPieces.forEach((piece) => {
+  piece.addEventListener("click", movePieces)
+})
 throwButton.addEventListener("click", throwDice)
-render()
