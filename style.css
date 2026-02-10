@@ -176,7 +176,7 @@ body {
   position: absolute;
   text-align: center;
 }
-/* if the pice go to cell */
+/* if more than one pice go to cell */
 .pieceinsidecell {
   width: 16px;
   height: 16px;

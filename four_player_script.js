@@ -6,6 +6,7 @@ const allPieces = document.querySelectorAll(".piece")
 let team = ["green", "yellow", "red", "blue"]
 let diceValue = 0
 let turn
+let extraThrow = false
 const paths = {
   green: [
     "greenSqrLobby",
@@ -259,7 +260,7 @@ let piecesPotion = {
   yellow4: "yellowSqrLobby",
   red1: "redSqrLobby",
   red2: "redSqrLobby",
-  red3: "redSqrLobby",
+  red3: "redplace5",
   red4: "redSqrLobby",
   blue1: "blueSqrLobby",
   blue2: "blueSqrLobby",
@@ -268,9 +269,18 @@ let piecesPotion = {
 }
 
 function throwDice() {
+  // no twice click if not 6
+  if (diceValue !== 0) {
+    return
+  }
+
   const randomValue = Math.floor(Math.random() * 6) + 1
   diceValue = randomValue
   dice.textContent = `DICE: ${diceValue}`
+
+  if (diceValue === 6) {
+    extraThrow = true
+  }
 }
 function randomStart() {
   let randomTeam = team[Math.floor(Math.random() * team.length)]
@@ -279,6 +289,7 @@ function randomStart() {
   turnDisplay.style.color = `${turn}`
 }
 function render() {
+  // add all piece in its place
   const pieceName = Object.keys(piecesPotion)
   for (let i = 0; i < pieceName.length; i++) {
     let piece = pieceName[i]
@@ -286,6 +297,7 @@ function render() {
     let cellposition = document.getElementById(`${piecesPotion[piece]}`)
     cellposition.appendChild(pieceDiv)
   }
+  // add class if the piece in same cell (make it smaller)
   for (let i = 0; i < pieceName.length; i++) {
     let piece = pieceName[i]
     let piecePotion = piecesPotion[piece]
@@ -306,8 +318,12 @@ function render() {
     if (cellposition.childElementCount > 1 && piecePotion === paths.blue[0]) {
       pieceDiv.classList.remove("pieceinsidecell")
     }
+    if (cellposition.childElementCount === 1) {
+      pieceDiv.classList.remove("pieceinsidecell")
+    }
   }
 }
+
 function switchTurn() {
   if (turn === "green") {
     turn = "yellow"
@@ -318,13 +334,60 @@ function switchTurn() {
   } else {
     turn = "green"
   }
+  //to reset
+  diceValue = 0
+  dice.textContent = "DICE : 0"
   turnDisplay.textContent = `TURN: ${turn} `
   turnDisplay.style.color = `${turn}`
 }
-function movePieces(event) {
-  const pieceId = event.target.id
-  const pieceColor = pieceId.replace(/[0-9]/g, "")
+function allPiecesInLobby(color) {
+  const lobby = paths[color][0]
+  let allInLobby = true
+  let potion = Object.keys(piecesPotion)
+  potion.forEach((piece) => {
+    if (piece.startsWith(color)) {
+      if (piecesPotion[piece] !== lobby) {
+        allInLobby = false
+      }
+    }
+  })
 
+  return allInLobby
+}
+function handleMoving(pieceId, nextIndex) {
+  const pieceColor = pieceId.replace(/[0-9]/g, "")
+  const path = paths[pieceColor]
+  const nextPosition = path[nextIndex]
+  //check if there are any piece in next place
+  const piecesOnNext = Object.keys(piecesPotion).filter(
+    (piece) => piecesPotion[piece] === nextPosition
+  )
+  //check color
+  let capturedOpponent = false
+  piecesOnNext.forEach((opponentPiece) => {
+    const opponentColor = opponentPiece.replace(/[0-9]/g, "")
+    if (opponentColor !== pieceColor) {
+      piecesPotion[opponentPiece] = paths[opponentColor][0]
+      capturedOpponent = true
+    }
+  })
+  //if color true (mean enemy piece)
+  if (capturedOpponent) {
+    const extraIndex = nextIndex + 3
+    if (extraIndex < path.length) {
+      piecesPotion[pieceId] = path[extraIndex]
+    } else {
+      piecesPotion[pieceId] = nextPosition
+    }
+  } else {
+    piecesPotion[pieceId] = nextPosition
+  }
+}
+function everythingTogether(event) {
+  const pieceId = event.target.id
+  const pieceColor = pieceId.replace(/[0-9]/g, "") // youtube XD : https://youtube.com/shorts/4gsATwvQj04?si=I43HhZlQgylJiFmu for remove the 1,2,3,4
+
+  //for error
   if (pieceColor !== turn) {
     alert(`it is ${turn} turn`)
     return
@@ -337,33 +400,44 @@ function movePieces(event) {
 
   const path = paths[pieceColor]
   const currentPosition = piecesPotion[pieceId]
-  const currentIndex = path.indexOf(currentPosition)
+  const currentIndex = path.indexOf(currentPosition) // w3shool : https://www.w3schools.com/jsref/jsref_indexOf.asp
 
+  //if all in lobby and you unlucky
+  if (allPiecesInLobby(pieceColor) && diceValue !== 6) {
+    switchTurn()
+    return
+  }
+  //if is in lobby start on path 1
+  let nextIndex
   if (currentIndex === 0) {
     if (diceValue !== 6) {
       return
     }
-    piecesPotion[pieceId] = path[1]
+    nextIndex = 1
   } else {
-    const nextIndex = currentIndex + diceValue
-
+    nextIndex = currentIndex + diceValue
     if (nextIndex >= path.length) {
-      alert("you need small number to jump ")
+      alert("You need a smaller number to jump")
       return
     }
-
-    piecesPotion[pieceId] = path[nextIndex]
   }
-
-  diceValue = 0
-  dice.textContent = "DICE : 0"
+  //move the piece and check if there are enemy on next cell
+  handleMoving(pieceId, nextIndex)
 
   render()
+  //plus throw
+  if (diceValue === 6 && extraThrow) {
+    diceValue = 0
+    dice.textContent = "DICE : 0"
+    extraThrow = false
+    return
+  }
   switchTurn()
 }
+/////////////////start////////////////////////
 randomStart()
 
 allPieces.forEach((piece) => {
-  piece.addEventListener("click", movePieces)
+  piece.addEventListener("click", everythingTogether)
 })
 throwButton.addEventListener("click", throwDice)
