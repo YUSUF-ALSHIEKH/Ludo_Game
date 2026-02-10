@@ -280,6 +280,27 @@ function render() {
     let cellposition = document.getElementById(`${piecesPotion[String(piece)]}`)
     cellposition.appendChild(pieceDiv)
   }
+  for (let i = 0; i < pieceName.length; i++) {
+    let piece = pieceName[i]
+    let piecePotion = piecesPotion[piece]
+    let pieceDiv = document.getElementById(`${piece}`)
+    let cellposition = document.getElementById(`${piecePotion}`)
+    if (cellposition.childElementCount > 1) {
+      pieceDiv.classList.add("pieceinsidecell")
+    }
+    if (cellposition.childElementCount > 1 && piecePotion === paths.green[0]) {
+      pieceDiv.classList.remove("pieceinsidecell")
+    }
+    if (cellposition.childElementCount > 1 && piecePotion === paths.yellow[0]) {
+      pieceDiv.classList.remove("pieceinsidecell")
+    }
+    if (cellposition.childElementCount > 1 && piecePotion === paths.red[0]) {
+      pieceDiv.classList.remove("pieceinsidecell")
+    }
+    if (cellposition.childElementCount > 1 && piecePotion === paths.blue[0]) {
+      pieceDiv.classList.remove("pieceinsidecell")
+    }
+  }
 }
 
 throwButton.addEventListener("click", throwDice)
