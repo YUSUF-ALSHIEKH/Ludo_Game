@@ -7,7 +7,7 @@
 7- if you step on specific square you will move 2 steps more
 8- if you reach the center and there are 3 steps to enter your piece to save side and you get 4 you cant move until you get 3 or 2 or 1 or get 6 (6 mean throw agin until (123)).
 
-9- this for start !!!
+
 
 
 

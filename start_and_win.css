@@ -1,0 +1,57 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+#mainBoard {
+  width: 450px;
+  height: 450px;
+  display: flex;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj93mFHzWlXLuaRH2ZyKByK04-sTGYh_x8eg&s");
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(57, 54, 50);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: transparent;
+}
+button {
+  background-color: rgb(9, 129, 215);
+  color: white;
+  margin: 15px;
+  width: 150px;
+}
+select {
+  width: 100px;
+  padding: 3px;
+  text-align: center;
+}
+h1 {
+  color: rgb(135, 21, 21);
+}
+label {
+  color: #ef0505;
+}
+#save {
+  width: 100px;
+  background-color: rgb(45, 241, 77);
+  color: black;
+}
+#winnerdiv {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 500px;
+  align-items: center;
+}
+#winners {
+  color: greenyellow;
+}
+#winnerimg {
+  width: 500px;
+  height: 400px;
+}

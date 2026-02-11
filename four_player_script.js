@@ -428,13 +428,14 @@ function checkTheWin() {
 }
 
 function everythingTogether(event) {
+  alertDisplay.textContent = ""
+  alertDisplay.style.color = turn
   const pieceId = event.target.id
   const pieceColor = pieceId.replace(/[0-9]/g, "") // youtube XD : https://youtube.com/shorts/4gsATwvQj04?si=I43HhZlQgylJiFmu for remove the 1,2,3,4
 
   //for error
   if (pieceColor !== turn) {
     alertDisplay.textContent = `it is ${turn} turn !!`
-    alertDisplay.style.color = turn
     return
   }
   if (diceValue === 0) {
