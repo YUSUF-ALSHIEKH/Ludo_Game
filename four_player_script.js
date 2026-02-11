@@ -260,7 +260,7 @@ let piecesPotion = {
   yellow4: "yellowSqrLobby",
   red1: "redSqrLobby",
   red2: "redSqrLobby",
-  red3: "redplace5",
+  red3: "redSqrLobby",
   red4: "redSqrLobby",
   blue1: "blueSqrLobby",
   blue2: "blueSqrLobby",
@@ -270,9 +270,9 @@ let piecesPotion = {
 
 function throwDice() {
   // no twice click if not 6
-  if (diceValue !== 0) {
-    return
-  }
+  // if (diceValue !== 0) {
+  //   return
+  // }
 
   const randomValue = Math.floor(Math.random() * 6) + 1
   diceValue = randomValue
@@ -383,6 +383,20 @@ function handleMoving(pieceId, nextIndex) {
     piecesPotion[pieceId] = nextPosition
   }
 }
+function checkTheWin() {
+  let greenCounter = 0
+  const pieceName = Object.keys(piecesPotion)
+  for (let i = 0; i < pieceName.length; i++) {
+    let piece = pieceName[i]
+    let pieceDiv = document.getElementById(`${piece}`)
+    let cellposition = document.getElementById(`${piecesPotion[piece]}`)
+    if (cellposition.id === paths.green[57]) {
+      console.log(piecesPotion.green3)
+      pieceDiv.className = " "
+      cellposition.textContent = greenCounter + 1
+    }
+  }
+}
 function everythingTogether(event) {
   const pieceId = event.target.id
   const pieceColor = pieceId.replace(/[0-9]/g, "") // youtube XD : https://youtube.com/shorts/4gsATwvQj04?si=I43HhZlQgylJiFmu for remove the 1,2,3,4
@@ -392,7 +406,6 @@ function everythingTogether(event) {
     alert(`it is ${turn} turn`)
     return
   }
-
   if (diceValue === 0) {
     alert("Throw the dice")
     return
@@ -412,8 +425,9 @@ function everythingTogether(event) {
   if (currentIndex === 0) {
     if (diceValue !== 6) {
       return
+    } else {
+      nextIndex = 1
     }
-    nextIndex = 1
   } else {
     nextIndex = currentIndex + diceValue
     if (nextIndex >= path.length) {
@@ -425,6 +439,7 @@ function everythingTogether(event) {
   handleMoving(pieceId, nextIndex)
 
   render()
+  checkTheWin()
   //plus throw
   if (diceValue === 6 && extraThrow) {
     diceValue = 0
@@ -433,6 +448,7 @@ function everythingTogether(event) {
     return
   }
   switchTurn()
+  checkTheWin()
 }
 /////////////////start////////////////////////
 randomStart()
