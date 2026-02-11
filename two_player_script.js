@@ -4,7 +4,7 @@ const turnDisplay = document.querySelector("#turn")
 const allPieces = document.querySelectorAll(".piece")
 const alertDisplay = document.querySelector("#alert")
 const nextPlayer = document.querySelector("#nextplayer")
-console.log(alertDisplay)
+
 let team = ["yellow", "red"]
 let diceValue = 0
 let turn
