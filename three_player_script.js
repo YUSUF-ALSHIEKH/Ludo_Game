@@ -4,7 +4,7 @@ const turnDisplay = document.querySelector("#turn")
 const allPieces = document.querySelectorAll(".piece")
 const alertDisplay = document.querySelector("#alert")
 const nextPlayer = document.querySelector("#nextplayer")
-let team = ["green", "yellow", "red", "blue"]
+let team = ["green", "yellow", "red"]
 let diceValue = 0
 let turn
 let win = false
@@ -189,66 +189,6 @@ const paths = {
     "redplace5",
     "redplace6",
   ],
-  blue: [
-    "blueSqrLobby",
-    "28",
-    "29",
-    "30",
-    "31",
-    "32",
-    "33",
-    "34",
-    "35",
-    "36",
-    "37",
-    "38",
-    "39",
-    "40",
-    "41",
-    "42",
-    "43",
-    "44",
-    "45",
-    "46",
-    "47",
-    "48",
-    "49",
-    "50",
-    "51",
-    "52",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-    "25",
-    "26",
-    "blueplace1",
-    "blueplace2",
-    "blueplace3",
-    "blueplace4",
-    "blueplace5",
-    "blueplace6",
-  ],
 }
 let piecesPotion = {
   green1: "greenSqrLobby",
@@ -263,10 +203,6 @@ let piecesPotion = {
   red2: "redSqrLobby",
   red3: "redSqrLobby",
   red4: "redSqrLobby",
-  blue1: "blueSqrLobby",
-  blue2: "blueSqrLobby",
-  blue3: "blueSqrLobby",
-  blue4: "blueSqrLobby",
 }
 
 function throwDice() {
@@ -312,9 +248,6 @@ function render() {
     if (cellposition.childElementCount > 1 && piecePotion === paths.red[0]) {
       pieceDiv.classList.remove("pieceinsidecell")
     }
-    if (cellposition.childElementCount > 1 && piecePotion === paths.blue[0]) {
-      pieceDiv.classList.remove("pieceinsidecell")
-    }
     if (cellposition.childElementCount === 1) {
       pieceDiv.classList.remove("pieceinsidecell")
     }
@@ -326,8 +259,6 @@ function switchTurn() {
     turn = "yellow"
   } else if (turn === "yellow") {
     turn = "red"
-  } else if (turn === "red") {
-    turn = "blue"
   } else {
     turn = "green"
   }
@@ -384,11 +315,9 @@ function checkTheWin() {
   const redHome = paths.red[paths.red.length - 1]
   const yellowHome = paths.yellow[paths.yellow.length - 1]
   const greenHome = paths.green[paths.green.length - 1]
-  const blueHome = paths.blue[paths.blue.length - 1]
   let redCount = 0
   let yellowCount = 0
   let greenCount = 0
-  let blueCount = 0
   const pieces = Object.keys(piecesPotion)
   pieces.forEach((piece) => {
     const pieceDiv = document.getElementById(piece)
@@ -406,22 +335,12 @@ function checkTheWin() {
       greenCount++
       pieceDiv.classList.add("hidden")
     }
-    if (piecesPotion[piece] === blueHome) {
-      blueCount++
-      pieceDiv.classList.add("hidden")
-    }
   })
   document.getElementById("redhome").textContent = redCount
   document.getElementById("yellowhome").textContent = yellowCount
   document.getElementById("greenhome").textContent = greenCount
-  document.getElementById("bluehome").textContent = blueCount
 
-  if (
-    redCount === 4 ||
-    yellowCount === 4 ||
-    greenCount === 4 ||
-    blueCount === 4
-  ) {
+  if (redCount === 4 || yellowCount === 4 || greenCount === 4) {
     win = true
     window.location.href = "./winer.html"
   }
@@ -469,9 +388,10 @@ function everythingTogether(event) {
   //move the piece and check if there are enemy on next cell
   handleMoving(pieceId, nextIndex)
   alertDisplay.textContent = ""
+
   render()
   checkTheWin()
-  //plus throw
+
   if (diceValue === 6) {
     diceValue = 0
     dice.textContent = "DICE : 0"

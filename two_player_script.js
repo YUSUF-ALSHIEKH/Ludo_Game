@@ -4,71 +4,12 @@ const turnDisplay = document.querySelector("#turn")
 const allPieces = document.querySelectorAll(".piece")
 const alertDisplay = document.querySelector("#alert")
 const nextPlayer = document.querySelector("#nextplayer")
-let team = ["green", "yellow", "red", "blue"]
+console.log(alertDisplay)
+let team = ["yellow", "red"]
 let diceValue = 0
 let turn
 let win = false
 const paths = {
-  green: [
-    "greenSqrLobby",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-    "25",
-    "26",
-    "27",
-    "28",
-    "29",
-    "30",
-    "31",
-    "32",
-    "33",
-    "34",
-    "35",
-    "36",
-    "37",
-    "38",
-    "39",
-    "40",
-    "41",
-    "42",
-    "43",
-    "44",
-    "45",
-    "46",
-    "47",
-    "48",
-    "49",
-    "50",
-    "51",
-    "52",
-    "greenplace1",
-    "greenplace2",
-    "greenplace3",
-    "greenplace4",
-    "greenplace5",
-    "greenplace6",
-  ],
   yellow: [
     "yellowSqrLobby",
     "41",
@@ -189,72 +130,8 @@ const paths = {
     "redplace5",
     "redplace6",
   ],
-  blue: [
-    "blueSqrLobby",
-    "28",
-    "29",
-    "30",
-    "31",
-    "32",
-    "33",
-    "34",
-    "35",
-    "36",
-    "37",
-    "38",
-    "39",
-    "40",
-    "41",
-    "42",
-    "43",
-    "44",
-    "45",
-    "46",
-    "47",
-    "48",
-    "49",
-    "50",
-    "51",
-    "52",
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-    "25",
-    "26",
-    "blueplace1",
-    "blueplace2",
-    "blueplace3",
-    "blueplace4",
-    "blueplace5",
-    "blueplace6",
-  ],
 }
 let piecesPotion = {
-  green1: "greenSqrLobby",
-  green2: "greenSqrLobby",
-  green3: "greenSqrLobby",
-  green4: "greenSqrLobby",
   yellow1: "yellowSqrLobby",
   yellow2: "yellowSqrLobby",
   yellow3: "yellowSqrLobby",
@@ -263,10 +140,6 @@ let piecesPotion = {
   red2: "redSqrLobby",
   red3: "redSqrLobby",
   red4: "redSqrLobby",
-  blue1: "blueSqrLobby",
-  blue2: "blueSqrLobby",
-  blue3: "blueSqrLobby",
-  blue4: "blueSqrLobby",
 }
 
 function throwDice() {
@@ -274,7 +147,6 @@ function throwDice() {
   if (diceValue !== 0) {
     return
   }
-
   const randomValue = Math.floor(Math.random() * 6) + 1
   diceValue = randomValue
   dice.textContent = `DICE: ${diceValue}`
@@ -303,16 +175,10 @@ function render() {
     if (cellposition.childElementCount > 1) {
       pieceDiv.classList.add("pieceinsidecell")
     }
-    if (cellposition.childElementCount > 1 && piecePotion === paths.green[0]) {
-      pieceDiv.classList.remove("pieceinsidecell")
-    }
     if (cellposition.childElementCount > 1 && piecePotion === paths.yellow[0]) {
       pieceDiv.classList.remove("pieceinsidecell")
     }
     if (cellposition.childElementCount > 1 && piecePotion === paths.red[0]) {
-      pieceDiv.classList.remove("pieceinsidecell")
-    }
-    if (cellposition.childElementCount > 1 && piecePotion === paths.blue[0]) {
       pieceDiv.classList.remove("pieceinsidecell")
     }
     if (cellposition.childElementCount === 1) {
@@ -322,14 +188,10 @@ function render() {
 }
 
 function switchTurn() {
-  if (turn === "green") {
+  if (turn === "red") {
     turn = "yellow"
-  } else if (turn === "yellow") {
-    turn = "red"
-  } else if (turn === "red") {
-    turn = "blue"
   } else {
-    turn = "green"
+    turn = "red"
   }
   //to reset
   diceValue = 0
@@ -383,12 +245,9 @@ function handleMoving(pieceId, nextIndex) {
 function checkTheWin() {
   const redHome = paths.red[paths.red.length - 1]
   const yellowHome = paths.yellow[paths.yellow.length - 1]
-  const greenHome = paths.green[paths.green.length - 1]
-  const blueHome = paths.blue[paths.blue.length - 1]
+
   let redCount = 0
   let yellowCount = 0
-  let greenCount = 0
-  let blueCount = 0
   const pieces = Object.keys(piecesPotion)
   pieces.forEach((piece) => {
     const pieceDiv = document.getElementById(piece)
@@ -397,31 +256,16 @@ function checkTheWin() {
       redCount++
       pieceDiv.classList.add("hidden")
     }
+
     if (piecesPotion[piece] === yellowHome) {
       yellowCount++
-      pieceDiv.classList.add("hidden")
-    }
-
-    if (piecesPotion[piece] === greenHome) {
-      greenCount++
-      pieceDiv.classList.add("hidden")
-    }
-    if (piecesPotion[piece] === blueHome) {
-      blueCount++
       pieceDiv.classList.add("hidden")
     }
   })
   document.getElementById("redhome").textContent = redCount
   document.getElementById("yellowhome").textContent = yellowCount
-  document.getElementById("greenhome").textContent = greenCount
-  document.getElementById("bluehome").textContent = blueCount
 
-  if (
-    redCount === 4 ||
-    yellowCount === 4 ||
-    greenCount === 4 ||
-    blueCount === 4
-  ) {
+  if (redCount === 4 || yellowCount === 4) {
     win = true
     window.location.href = "./winer.html"
   }
@@ -441,7 +285,6 @@ function everythingTogether(event) {
     alertDisplay.textContent = "Throw the dice !!"
     return
   }
-
   const path = paths[pieceColor]
   const currentPosition = piecesPotion[pieceId]
   const currentIndex = path.indexOf(currentPosition) // w3shool : https://www.w3schools.com/jsref/jsref_indexOf.asp
@@ -468,6 +311,7 @@ function everythingTogether(event) {
   }
   //move the piece and check if there are enemy on next cell
   handleMoving(pieceId, nextIndex)
+
   alertDisplay.textContent = ""
   render()
   checkTheWin()

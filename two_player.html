@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="./script.js"></script>
-    <script defer src="./four_player_script.js"></script>
+    <script defer src="./two_player_script.js"></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
@@ -15,12 +15,7 @@
       <!-- top of Board -->
       <div class="insideBoard">
         <div class="boardLobby green">
-          <div class="pieceSqr" id="greenSqrLobby">
-            <div class="piece greenPiece" id="green1">1</div>
-            <div class="piece greenPiece" id="green2">2</div>
-            <div class="piece greenPiece" id="green3">3</div>
-            <div class="piece greenPiece" id="green4">4</div>
-          </div>
+          <div class="pieceSqr" id="greenSqrLobby"></div>
         </div>
         <div class="rowCell">
           <div class="cell" id="1"></div>
@@ -77,12 +72,8 @@
           <div class="leftTriangle" id="redplace6">
             <div class="homeCounter" id="redhome">0</div>
           </div>
-          <div class="topTriangle" id="greenplace6">
-            <div class="homeCounter" id="greenhome">0</div>
-          </div>
-          <div class="bottomTriangle" id="blueplace6">
-            <div class="homeCounter" id="bluehome">0</div>
-          </div>
+          <div class="topTriangle"></div>
+          <div class="bottomTriangle"></div>
           <div class="rightTriangle" id="yellowplace6">
             <div class="homeCounter" id="yellowhome">0</div>
           </div>
@@ -140,19 +131,14 @@
           <div class="cell" id="27"></div>
         </div>
         <div class="boardLobby blue">
-          <div class="pieceSqr" id="blueSqrLobby">
-            <div class="piece bluePiece" id="blue1">1</div>
-            <div class="piece bluePiece" id="blue2">2</div>
-            <div class="piece bluePiece" id="blue3">3</div>
-            <div class="piece bluePiece" id="blue4">4</div>
-          </div>
+          <div class="pieceSqr" id="blueSqrLobby"></div>
         </div>
       </div>
     </div>
     <div id="leftSide">
       <div id="turn">TURN :</div>
       <div id="dice">DICE : 0</div>
-      <button id="throw">throw</button>
+      <button id="throw">THROW</button>
       <button id="nextplayer">Next TURN</button>
     </div>
   </body>

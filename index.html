@@ -3,135 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
     <script defer src="./script.js"></script>
     <link rel="stylesheet" href="./style.css" />
+    <title>Ludo Game</title>
   </head>
   <body>
-    <h1>Loud Game</h1>
-    <div id="mainBoard">
-      <!-- top of Board -->
-      <div class="insideBoard">
-        <div class="boardLobby green">
-          <div class="pieceSqr" id="greenSqrLobby"></div>
-        </div>
-        <div class="rowCell">
-          <div class="cell" id="1"></div>
-          <div class="cell green" id="2"></div>
-          <div class="cell" id="3"></div>
-          <div class="cell" id="4"></div>
-          <div class="cell" id="5"></div>
-          <div class="cell" id="6"></div>
-          <div class="cell" id="52"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell" id="51"></div>
-          <div class="cell" id="50"></div>
-          <div class="cell" id="49"></div>
-          <div class="cell" id="48"></div>
-          <div class="cell" id="47"></div>
-          <div class="cell" id="46"></div>
-        </div>
-        <div class="boardLobby yellow">
-          <div class="pieceSqr" id="yellowSqrLobby">
-            <div class="piece yellowPiece">1</div>
-            <div class="piece yellowPiece">2</div>
-            <div class="piece yellowPiece">3</div>
-            <div class="piece yellowPiece">4</div>
-          </div>
-        </div>
-      </div>
-      <!-- left cell  on mid of board -->
-      <div class="insideBoard">
-        <div class="midRowCell">
-          <div class="midcell" id="12"></div>
-          <div class="midcell" id="11"></div>
-          <div class="midcell" id="10"></div>
-          <div class="midcell" id="9"></div>
-          <div class="midcell" id="8"></div>
-          <div class="midcell" id="7"></div>
-          <div class="midcell" id="13"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell" id="14"></div>
-          <div class="midcell red" id="15"></div>
-          <div class="midcell" id="16"></div>
-          <div class="midcell" id="17"></div>
-          <div class="midcell" id="18"></div>
-          <div class="midcell" id="19"></div>
-        </div>
-        <div class="boardLobby midsqr">
-          <div class="leftTriangle">
-            <div class="homeCounter"></div>
-          </div>
-          <div class="topTriangle"></div>
-          <div class="bottomTriangle"></div>
-          <div class="rightTriangle">
-            <div class="homeCounter"></div>
-          </div>
-        </div>
-        <!-- right cell on mid of board -->
-        <div class="midRowCell">
-          <div class="midcell" id="45"></div>
-          <div class="midcell" id="44"></div>
-          <div class="midcell" id="43"></div>
-          <div class="midcell" id="42"></div>
-          <div class="midcell yellow" id="41"></div>
-          <div class="midcell" id="40"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell" id="39"></div>
-          <div class="midcell" id="33"></div>
-          <div class="midcell" id="34"></div>
-          <div class="midcell" id="35"></div>
-          <div class="midcell" id="36"></div>
-          <div class="midcell" id="37"></div>
-          <div class="midcell" id="38"></div>
-        </div>
-      </div>
-      <!-- bottom of board -->
-      <div class="insideBoard">
-        <div class="boardLobby red">
-          <div class="pieceSqr" id="redSqrLobby">
-            <div class="piece redPiece">1</div>
-            <div class="piece redPiece">2</div>
-            <div class="piece redPiece">3</div>
-            <div class="piece redPiece">4</div>
-          </div>
-        </div>
-        <div class="rowCell">
-          <div class="cell" id="20"></div>
-          <div class="cell" id="21"></div>
-          <div class="cell" id="22"></div>
-          <div class="cell" id="23"></div>
-          <div class="cell" id="24"></div>
-          <div class="cell" id="25"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell" id="26"></div>
-          <div class="cell" id="32"></div>
-          <div class="cell" id="31"></div>
-          <div class="cell" id="30"></div>
-          <div class="cell" id="29"></div>
-          <div class="cell blue" id="28"></div>
-          <div class="cell" id="27"></div>
-        </div>
-        <div class="boardLobby blue">
-          <div class="pieceSqr" id="blueSqrLobby"></div>
-        </div>
-      </div>
-    </div>
+    <label>Players</label>
+    <select id="Players">
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+    </select>
+
+    <button id="save">Save</button>
+    <a href="index.html" id="start"><button>Start</button></a>
   </body>
 </html>

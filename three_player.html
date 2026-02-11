@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script defer src="./script.js"></script>
+    <script defer src="./three_player_script.js"></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <h1>Loud Game</h1>
+    <h2 id="alert"></h2>
     <div id="mainBoard">
       <!-- top of Board -->
       <div class="insideBoard">
         <div class="boardLobby green">
           <div class="pieceSqr" id="greenSqrLobby">
-            <div class="piece greenPiece" id="g1">1</div>
-            <div class="piece greenPiece" id="g2">2</div>
-            <div class="piece greenPiece" id="g3">3</div>
-            <div class="piece greenPiece" id="g4">4</div>
+            <div class="piece greenPiece" id="green1">1</div>
+            <div class="piece greenPiece" id="green2">2</div>
+            <div class="piece greenPiece" id="green3">3</div>
+            <div class="piece greenPiece" id="green4">4</div>
           </div>
         </div>
         <div class="rowCell">
@@ -28,11 +30,11 @@
           <div class="cell" id="5"></div>
           <div class="cell" id="6"></div>
           <div class="cell" id="52"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
-          <div class="cell green"></div>
+          <div class="cell green" id="greenplace1"></div>
+          <div class="cell green" id="greenplace2"></div>
+          <div class="cell green" id="greenplace3"></div>
+          <div class="cell green" id="greenplace4"></div>
+          <div class="cell green" id="greenplace5"></div>
           <div class="cell" id="51"></div>
           <div class="cell" id="50"></div>
           <div class="cell" id="49"></div>
@@ -42,10 +44,10 @@
         </div>
         <div class="boardLobby yellow">
           <div class="pieceSqr" id="yellowSqrLobby">
-            <div class="piece yellowPiece">1</div>
-            <div class="piece yellowPiece">2</div>
-            <div class="piece yellowPiece">3</div>
-            <div class="piece yellowPiece">4</div>
+            <div class="piece yellowPiece" id="yellow1">1</div>
+            <div class="piece yellowPiece" id="yellow2">2</div>
+            <div class="piece yellowPiece" id="yellow3">3</div>
+            <div class="piece yellowPiece" id="yellow4">4</div>
           </div>
         </div>
       </div>
@@ -59,11 +61,11 @@
           <div class="midcell" id="8"></div>
           <div class="midcell" id="7"></div>
           <div class="midcell" id="13"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
-          <div class="midcell red"></div>
+          <div class="midcell red" id="redplace1"></div>
+          <div class="midcell red" id="redplace2"></div>
+          <div class="midcell red" id="redplace3"></div>
+          <div class="midcell red" id="redplace4"></div>
+          <div class="midcell red" id="redplace5"></div>
           <div class="midcell" id="14"></div>
           <div class="midcell red" id="15"></div>
           <div class="midcell" id="16"></div>
@@ -72,15 +74,15 @@
           <div class="midcell" id="19"></div>
         </div>
         <div class="boardLobby midsqr">
-          <div class="leftTriangle">
-            <div class="homeCounter"></div>
+          <div class="leftTriangle" id="redplace6">
+            <div class="homeCounter" id="redhome">0</div>
           </div>
-          <div class="topTriangle">
-            <div class="homeCounter"></div>
+          <div class="topTriangle" id="greenplace6">
+            <div class="homeCounter" id="greenhome">0</div>
           </div>
           <div class="bottomTriangle"></div>
-          <div class="rightTriangle">
-            <div class="homeCounter"></div>
+          <div class="rightTriangle" id="yellowplace6">
+            <div class="homeCounter" id="yellowhome">0</div>
           </div>
         </div>
         <!-- right cell on mid of board -->
@@ -91,11 +93,11 @@
           <div class="midcell" id="42"></div>
           <div class="midcell yellow" id="41"></div>
           <div class="midcell" id="40"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
-          <div class="midcell yellow"></div>
+          <div class="midcell yellow" id="yellowplace5"></div>
+          <div class="midcell yellow" id="yellowplace4"></div>
+          <div class="midcell yellow" id="yellowplace3"></div>
+          <div class="midcell yellow" id="yellowplace2"></div>
+          <div class="midcell yellow" id="yellowplace1"></div>
           <div class="midcell" id="39"></div>
           <div class="midcell" id="33"></div>
           <div class="midcell" id="34"></div>
@@ -109,10 +111,10 @@
       <div class="insideBoard">
         <div class="boardLobby red">
           <div class="pieceSqr" id="redSqrLobby">
-            <div class="piece redPiece">1</div>
-            <div class="piece redPiece">2</div>
-            <div class="piece redPiece">3</div>
-            <div class="piece redPiece">4</div>
+            <div class="piece redPiece" id="red1">1</div>
+            <div class="piece redPiece" id="red2">2</div>
+            <div class="piece redPiece" id="red3">3</div>
+            <div class="piece redPiece" id="red4">4</div>
           </div>
         </div>
         <div class="rowCell">
@@ -122,11 +124,11 @@
           <div class="cell" id="23"></div>
           <div class="cell" id="24"></div>
           <div class="cell" id="25"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
-          <div class="cell blue"></div>
+          <div class="cell blue" id="blueplace1"></div>
+          <div class="cell blue" id="blueplace2"></div>
+          <div class="cell blue" id="blueplace3"></div>
+          <div class="cell blue" id="blueplace4"></div>
+          <div class="cell blue" id="blueplace5"></div>
           <div class="cell" id="26"></div>
           <div class="cell" id="32"></div>
           <div class="cell" id="31"></div>
@@ -139,6 +141,12 @@
           <div class="pieceSqr" id="blueSqrLobby"></div>
         </div>
       </div>
+    </div>
+    <div id="leftSide">
+      <div id="turn">TURN :</div>
+      <div id="dice">DICE : 0</div>
+      <button id="throw">throw</button>
+      <button id="nextplayer">Next TURN</button>
     </div>
   </body>
 </html>
